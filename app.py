@@ -44,7 +44,9 @@ def listUrl():
     botonV = ""
     if(request.method == 'POST'):
         botonV = request.form['delete']
-        print(botonV)
+        LISTAURLS.pop(botonV)
+        conn.delete('tinys')
+        conn.hmset('tinys', LISTAURLS)
     template = env.get_template('listado.html')
     return template.render(my_list=LISTAURLS)
 @app.route('/stats', methods=["GET", "POST"])
