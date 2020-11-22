@@ -41,6 +41,10 @@ def tiny():
     return template.render(key=key_User)
 @app.route('/listUrl', methods=["GET", "POST"])
 def listUrl():
+    botonV = ""
+    if(request.method == 'POST'):
+        botonV = request.form['delete']
+        print(botonV)
     template = env.get_template('listado.html')
     return template.render(my_list=LISTAURLS)
 @app.route('/stats', methods=["GET", "POST"])

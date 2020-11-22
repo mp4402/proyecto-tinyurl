@@ -7,13 +7,20 @@
             <tr>
                 <th scope="col">tinyURL</th>
                 <th scope="col">URL Original</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            {% for n,k in my_list.items() %}
+            {% for k,v in my_list.items() %}
                 <tr>
-                    <th scope="col">localhost:5000/{{n}}</th>
-                    <th scope="col">{{k}}</th>
+                    <th scope="col">localhost:5000/{{k}}</th>
+                    <th scope="col">{{v}}</th>
+                    <th scope="col"> 
+                        <form method="POST" action="">   
+                            <button type="submit" class="btn btn-primary" name="delete" value="{{k}}">DELETE</button> 
+                        </form>
+                    
+                    </th>
                 </tr>
             {% endfor %}
         </tbody>
