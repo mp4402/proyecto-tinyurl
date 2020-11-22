@@ -10,9 +10,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for n in my_list %}
+            {% for n,k in my_list.items() %}
                 <tr>
-                    <td>{{n}}</td>
+                    <td>http://localhost:5000/{{n}}</td>
+                    <td>{{k}}</td>
                 </tr>
             {% end for %}
         </tbody>
