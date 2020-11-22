@@ -14,9 +14,13 @@ def tocken():
     return str_
 @app.route('/', methods=["GET", "POST"])
 def tiny():
+    key_User = ""
+    url = " "
     if(request.method == 'POST'):
         url = request.form['url']
         key_User = request.form['customAlias']
+        print(url)
+        print(key_User)
         if(url == ""):
             pass
         else:
@@ -31,6 +35,7 @@ def tiny():
                     break
             if(i == 0):
                 LISTAURLS[key_User] = url
+            conn.delete('tinys')
             conn.hmset('tinys', LISTAURLS)        
     template = env.get_template('index.html')
     return template.render(key=key_User)
