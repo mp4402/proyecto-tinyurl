@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <div class="table">
+    <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">tinyURL</th>
@@ -12,11 +12,11 @@
         <tbody>
             {% for n,k in my_list.items() %}
                 <tr>
-                    <td>localhost:5000/{{n}}</td>
-                    <td>{{k}}</td>
+                    <th scope="col">localhost:5000/{{n}}</th>
+                    <th scope="col">{{k}}</th>
                 </tr>
             {% endfor %}
         </tbody>
-    </div>
+    </table>
 
 {% endblock %}

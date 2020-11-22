@@ -2,25 +2,23 @@
 
 {% block body %}
 
-    <div class="table">
-        <thead class="thead-dark">
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">tinyURL</th>
+            <th scope="col">URL Original</th>
+            <th scope="col">Visitas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for n,k in my_list.items() %}
             <tr>
-                <th scope="col">tinyURL</th>
-                <th scope="col">URL Original</th>
-                <th scope="col">Visitas</th>
+                <th scope="col">localhost:5000/{{n}}</th>
+                <th scope="col">{{k}}</th>
+                <th scope="col">{{}}}</th>
             </tr>
-        </thead>
-        <tbody>
-            {{contador}}
-            {% for n,k in my_list.items() %}
-                <tr>
-                    <td>localhost:5000/{{n}}</td>
-                    <td>{{k}}</td>
-                    <td>{{stats[contador]}}</td>
-                </tr>
-                {{contador+=1}}
-            {% endfor %}
-        </tbody>
-    </div>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
