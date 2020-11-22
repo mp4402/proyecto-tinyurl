@@ -2,7 +2,7 @@ from flask import Flask, url_for, request, redirect
 from jinja2 import Template, Environment, FileSystemLoader
 import redis
 import shortuuid
-conn = redis.Redis('localhost')
+conn = redis.Redis('localhost', charset="utf-8", decode_responses=True)
 File_loader = FileSystemLoader("templates")
 env = Environment(loader=File_loader)
 app = Flask(__name__)
@@ -31,16 +31,13 @@ def tiny():
                     break
             if(i == 0):
                 LISTAURLS[key_User] = url
-
-            conn.set('tinys', LISTAURLS)        
+            conn.hmset('tinys', LISTAURLS)        
     template = env.get_template('index.html')
-    return template.render(my_list=LISTAURLS)
-
-    pass
+    return template.render(key=key_User)
 @app.route('/listUrl', methods=["GET", "POST"])
 def listUrl():
-
-    pass
+    template = env.get_template('listado.html')
+    return template.render(my_list=LISTAURLS)
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
     pass
