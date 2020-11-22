@@ -3,18 +3,17 @@ from jinja2 import Template, Environment, FileSystemLoader
 import redis
 import shortuuid
 conn = redis.Redis('localhost')
-
 File_loader = FileSystemLoader("templates")
 env = Environment(loader=File_loader)
 app = Flask(__name__)
 LISTAURLS = conn.hgetall('tinys')
 url = ""
 key_User = ""
-@app.route('/tiny', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def tiny():
     if(request.method == 'POST'):
-        url = request.form['']
-        key_User = request.form['']
+        url = request.form['url']
+        key_User = request.form['customAlias']
         if(url == ""):
             pass #alerta
         else:
@@ -22,7 +21,7 @@ def tiny():
                 pass #funcion shortuuid
             else:
                 pass #funcion nuestra
-    template = env.get_template('')
+    template = env.get_template('index.html')
     return template.render()
 
     pass
