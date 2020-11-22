@@ -43,7 +43,7 @@ def tiny():
 def listUrl():
     botonV = ""
     if(request.method == 'POST'):
-        botonV = request.form('delete')
+        botonV = request.form['delete']
         print(botonV)
     template = env.get_template('listado.html')
     return template.render(my_list=LISTAURLS)

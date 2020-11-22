@@ -15,7 +15,12 @@
                 <tr>
                     <th scope="col">localhost:5000/{{k}}</th>
                     <th scope="col">{{v}}</th>
-                    <th scope="col"> <button type="submit" class="btn btn-primary" name="delete" value="{{k}}">DELETE</button> </th>
+                    <th scope="col"> 
+                        <form method="POST" action="">   
+                            <button type="submit" class="btn btn-primary" name="delete" value="{{k}}">DELETE</button> 
+                        </form>
+                    
+                    </th>
                 </tr>
             {% endfor %}
         </tbody>
