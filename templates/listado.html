@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">tinyURL</th>
+                <th scope="col">URL Original</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in my_list %}
+                <tr>
+                    <td>{{n}}</td>
+                </tr>
+            {% end for %}
+        </tbody>
+    </div>
+
+{% endblock %}
