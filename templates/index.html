@@ -5,14 +5,20 @@
 <form method="POST" action="">
     <div class="form-group">
         <p>Ingresa URL larga para hacerla tiny:</p>
-      <input type="text" class="form-control" name="url"  placeholder="http://your-long-url.com/and/other/paths">
+        <div>
+            <input type="text" class="form-control" name="url"  placeholder="http://your-long-url.com/and/other/paths" size="40">
+        </div>
         <p>Custon alias (opcional):</p>
-        <input type="text" class="form-control" name="customAlias">
+        <div>
+            http://mi-dominio.com/<input type="text" class="form-control" name="customAlias" size="20">
+        </div>
         <p> </p>
+            <button type="submit" class="btn btn-primary">Generar Tiny</button>
+        <p>Resultado:</p>
+        <div>
+            <input type="text" class="form-control" name="resultado" readonly>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Generar Tiny</button>
-    <p>Resultado:</p>
-    <input type="text" class="form-control" name="resultado">
 </form>
 
 
