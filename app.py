@@ -31,13 +31,15 @@ def tiny():
                     break
             if(i == 0):
                 LISTAURLS[key_User] = url
-                
+
+            conn.set('tinys', LISTAURLS)        
     template = env.get_template('index.html')
-    return template.render()
+    return template.render(my_list=LISTAURLS)
 
     pass
 @app.route('/listUrl', methods=["GET", "POST"])
 def listUrl():
+
     pass
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
