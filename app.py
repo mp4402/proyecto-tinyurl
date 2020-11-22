@@ -9,18 +9,29 @@ app = Flask(__name__)
 LISTAURLS = conn.hgetall('tinys')
 url = ""
 key_User = ""
+def tocken():
+    str_ = shortuuid.ShortUUID().random(length=5)
+    return str_
 @app.route('/', methods=["GET", "POST"])
 def tiny():
     if(request.method == 'POST'):
         url = request.form['url']
         key_User = request.form['customAlias']
         if(url == ""):
-            pass #alerta
+            pass
         else:
             if(key_User == ""):
-                pass #funcion shortuuid
-            else:
-                pass #funcion nuestra
+                key_User = tocken()
+                #funcion shortuuid
+            i = 0
+            for k in LISTAURLS.keys():
+                if(LISTAURLS[k] == url):
+                    i = 1
+                    LISTAURLS[key_User] = LISTAURLS.pop(k)
+                    break
+            if(i == 0):
+                LISTAURLS[key_User] = url
+                
     template = env.get_template('index.html')
     return template.render()
 
