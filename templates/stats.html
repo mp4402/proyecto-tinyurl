@@ -7,14 +7,18 @@
             <tr>
                 <th scope="col">tinyURL</th>
                 <th scope="col">URL Original</th>
+                <th scope="col">Visitas</th>
             </tr>
         </thead>
         <tbody>
+            {{contador}}
             {% for n,k in my_list.items() %}
                 <tr>
                     <td>localhost:5000/{{n}}</td>
                     <td>{{k}}</td>
+                    <td>{{stats[contador]}}</td>
                 </tr>
+                {{contador+=1}}
             {% endfor %}
         </tbody>
     </div>
