@@ -9,7 +9,7 @@ File_loader = FileSystemLoader("templates")
 env = Environment(loader=File_loader)
 app = Flask(__name__)
 LISTAURLS = conn.hgetall('tinys')
-LISTAVISTAS = conn.hget('tvisitas')
+LISTAVISTAS = conn.hgetall('tvisitas')
 url = ""
 key_User = ""
 

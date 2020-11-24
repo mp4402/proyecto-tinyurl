@@ -7,7 +7,7 @@ services:
     ports:
       - 6379:6379
   app:
-    image: mp4402/proyecto-tyniurl:latest
+    image: carlosalvaradodock/proyecto-tyniurl:latest
     build:
       context: .
     environment:
