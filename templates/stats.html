@@ -11,11 +11,11 @@
         </tr>
     </thead>
     <tbody>
-        {% for n,k in zip(my_list.items(),visitas.items())) %}
+        {% for k in mylist.keys() %}
             <tr>
-                <th scope="col">localhost:5000/{{n}}</th>
-                <th scope="col">{{k[0]}}</th>
-                <th scope="col">{{k[1]}}}</th>
+                <th scope="col">localhost:5000/{{k}}</th>
+                <th scope="col">{{mylist[k]}}</th>
+                <th scope="col">{{mylist2[k]}}</th>
             </tr>
         {% endfor %}
     </tbody>

@@ -59,7 +59,7 @@ def listUrl():
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
     pass
-
+diccionario = {'nombre' : 'Carlos', 'edad' : 22, 'cursos': ['Python','Django','JavaScript'] }
 @app.route('/<hola>',methods=["GET", "POST"])
 def redireccionar(hola=None):
     print(hola)
@@ -67,9 +67,9 @@ def redireccionar(hola=None):
     for k in LISTAURLS.keys():
         if(k==hola):
             i=1
-            break
     if(i == 0):
-        return redirect('notfound.html'), 301
+        template = env.get_template('notfound.html')
+        return template.render()
     else:
         return redirect(LISTAURLS[hola]), 301
        
