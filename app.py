@@ -19,6 +19,7 @@ def tocken():
 
 @app.route('/', methods=["GET", "POST"])
 def tiny():
+    global LISTAVISTAS, LISTAURLS
     key_User = ""
     url = " "
     if(request.method == 'POST'):
@@ -41,7 +42,7 @@ def tiny():
                     break
             if(i == 0):
                 LISTAURLS[key_User] = url
-                LISTAVISTAS[key_User] = 0
+                LISTAVISTAS[key_User] = "0"
             conn.delete('tinys')
             conn.delete('tvisitas')
             conn.hmset('tinys', LISTAURLS) 
@@ -51,6 +52,7 @@ def tiny():
 
 @app.route('/listUrl', methods=["GET", "POST"])
 def listUrl():
+    global LISTAVISTAS, LISTAURLS
     botonV = ""
     if(request.method == 'POST'):
         botonV = request.form['delete']
@@ -61,18 +63,20 @@ def listUrl():
         if(len(LISTAURLS) == 0):
             pass
         else:
-            conn.hmset('tinys', LISTAURLS)
-            conn.hmset('tvisitas', LISTAVISTAS)
+            conn.hset('tinys', LISTAURLS)
+            conn.hset('tvisitas', LISTAVISTAS)
     template = env.get_template('listado.html')
     return template.render(my_list=LISTAURLS)
 
 @app.route('/stats')
 def stats():
+    global LISTAVISTAS, LISTAURLS
     template = env.get_template('stats.html')
     return template.render(my_list=LISTAURLS, my_list2=LISTAVISTAS)
 
 @app.route('/<keyredict>', methods=["GET", "POST"])
 def redireccionar(keyredict=None):
+    global LISTAVISTAS, LISTAURLS
     print(keyredict)
     i=0
     for k in LISTAURLS.keys():
@@ -84,12 +88,17 @@ def redireccionar(keyredict=None):
         return template.render()
     else:
         cont = LISTAVISTAS[keyredict]
+        cont = int(cont)
         cont = cont + 1
+        cont = str(cont)
         LISTAVISTAS[keyredict] = cont
-        return redirect(LISTAURLS[keyredict]), 301
+        conn.delete('tvisitas')
+        conn.hmset('tvisitas', LISTAVISTAS)
+        return redirect(LISTAURLS[keyredict], 301)
        
     
 
 if __name__ == '__main__':
     print(LISTAURLS)
+    print(f"\n\n\n{LISTAVISTAS}")
     app.run(host='0.0.0.0', port=5000)
