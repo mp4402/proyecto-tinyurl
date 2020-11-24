@@ -2,7 +2,9 @@ from flask import Flask, url_for, request, redirect
 from jinja2 import Template, Environment, FileSystemLoader
 import redis
 import shortuuid
-conn = redis.Redis('localhost', charset="utf-8", decode_responses=True)
+import os
+REDIS_HOST = os.getenv("REDIS_HOST", None)
+conn = redis.Redis(host=REDIS_HOST, charset="utf-8", decode_responses=True, port=6379)
 File_loader = FileSystemLoader("templates")
 env = Environment(loader=File_loader)
 app = Flask(__name__)
