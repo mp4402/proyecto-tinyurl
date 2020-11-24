@@ -69,7 +69,7 @@ def redireccionar(hola=None):
             i=1
             break
     if(i == 0):
-        return redirect("https://meet.google.com/kzy-yuve-qfn")
+        return redirect('notfound.html'), 301
     else:
         return redirect(LISTAURLS[hola]), 301
        
