@@ -9,9 +9,11 @@ app = Flask(__name__)
 LISTAURLS = conn.hgetall('tinys')
 url = ""
 key_User = ""
+
 def tocken():
     str_ = shortuuid.ShortUUID().random(length=5)
     return str_
+
 @app.route('/', methods=["GET", "POST"])
 def tiny():
     key_User = ""
@@ -39,6 +41,7 @@ def tiny():
             conn.hmset('tinys', LISTAURLS)        
     template = env.get_template('index.html')
     return template.render(key=key_User)
+
 @app.route('/listUrl', methods=["GET", "POST"])
 def listUrl():
     botonV = ""
@@ -52,9 +55,26 @@ def listUrl():
             conn.hmset('tinys', LISTAURLS)
     template = env.get_template('listado.html')
     return template.render(my_list=LISTAURLS)
+
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
     pass
+
+@app.route('/<hola>',methods=["GET", "POST"])
+def redireccionar(hola=None):
+    print(hola)
+    i=0
+    for k in LISTAURLS.keys():
+        if(k==hola):
+            i=1
+            break
+    if(i == 0):
+        return redirect("https://meet.google.com/kzy-yuve-qfn")
+    else:
+        return redirect(LISTAURLS[hola]), 301
+       
+    
+
 if __name__ == '__main__':
     print(LISTAURLS)
     app.run(host='0.0.0.0', port=5000)
