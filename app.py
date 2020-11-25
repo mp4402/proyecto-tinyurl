@@ -63,8 +63,8 @@ def listUrl():
         if(len(LISTAURLS) == 0):
             pass
         else:
-            conn.hset('tinys', LISTAURLS)
-            conn.hset('tvisitas', LISTAVISTAS)
+            conn.hmset('tinys', LISTAURLS)
+            conn.hmset('tvisitas', LISTAVISTAS)
     template = env.get_template('listado.html')
     return template.render(my_list=LISTAURLS)
 
@@ -94,7 +94,7 @@ def redireccionar(keyredict=None):
         LISTAVISTAS[keyredict] = cont
         conn.delete('tvisitas')
         conn.hmset('tvisitas', LISTAVISTAS)
-        return redirect(LISTAURLS[keyredict], 301)
+        return redirect(LISTAURLS[keyredict])
        
     
 
