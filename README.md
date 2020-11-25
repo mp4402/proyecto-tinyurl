@@ -18,7 +18,7 @@ Erase
 
 <!-- SU INFO VA AQUI -->
 # Video en YouTube
-  [YouTube]()
+  [YouTube](https://youtu.be/RgQ3Wp9VahE)
 # Participantes
   ```
   Carlos Alvarado
